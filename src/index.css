@@ -1,0 +1,118 @@
+:root {
+  --bg: #fafafa;
+  --text: #222;
+  --muted: #555;
+  --card-border: #ddd;
+  --button-bg: #fff;
+  --button-text: #222;
+  --button-border: #ccc;
+  --pin-on-bg: #1a7f4b;
+  --pin-on-border: #166b3f;
+  --pin-on-text: #fff;
+  --pin-off-bg: #f3f3f3;
+  --pin-off-text: #444;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --text: #eee;
+  --muted: #bbb;
+  --card-border: #444;
+  --button-bg: #2a2a2a;
+  --button-text: #eee;
+  --button-border: #555;
+  --pin-on-bg: #1a7f4b;
+  --pin-on-border: #2ea86a;
+  --pin-on-text: #fff;
+  --pin-off-bg: #333;
+  --pin-off-text: #ddd;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.app-header h1 {
+  margin: 0 0 8px;
+}
+
+.app-header p {
+  margin: 0;
+}
+
+.theme-toggle,
+button {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--button-border);
+  padding: 4px 10px;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+.habit-card,
+.monthly-summary {
+  border: 1px solid var(--card-border);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.monthly-summary h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.habit-controls {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.habit-description {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.weekly-target-message {
+  margin: 0 0 8px;
+  color: var(--pin-on-bg);
+  font-weight: 600;
+}
+
+.habit-list-toolbar {
+  margin-bottom: 12px;
+}
+
+.pin-button {
+  border: 1px solid var(--button-border);
+  padding: 4px 10px;
+}
+
+.pin-button-on {
+  background: var(--pin-on-bg);
+  border-color: var(--pin-on-border);
+  color: var(--pin-on-text);
+}
+
+.pin-button-off {
+  background: var(--pin-off-bg);
+  color: var(--pin-off-text);
+}
