@@ -43,9 +43,10 @@ function App() {
   const isDark = theme === 'dark'
 
   return (
-    <div>
+    <div className="app-shell">
       <header className="app-header">
-        <div>
+        <div className="app-header-copy">
+          <p className="app-kicker">Daily dashboard</p>
           <h1>Habit Tracker</h1>
           <p>Your daily habits, streaks, and weekly targets.</p>
         </div>
@@ -58,7 +59,9 @@ function App() {
           {isDark ? 'Light mode' : 'Dark mode'}
         </button>
       </header>
-      <HabitList />
+      <main className="app-main">
+        <HabitList />
+      </main>
     </div>
   )
 }

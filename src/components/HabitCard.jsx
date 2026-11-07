@@ -4,8 +4,12 @@ import { playConfettiBurst } from '../utils/confettiBurst.js'
 import './habitConfetti.css'
 
 function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete }) {
-  const isHighStreak = getStreakDays(habit) > 10;
+  const streakDays = getStreakDays(habit)
+  const isHighStreak = streakDays > 10
   const metWeeklyTarget = habit.completedThisWeek >= habit.targetPerWeek
+  const weeklyPercent = habit.targetPerWeek > 0
+    ? Math.min(100, Math.round((habit.completedThisWeek / habit.targetPerWeek) * 100))
+    : 0
   const markDoneRef = useRef(null)
   const stopConfettiRef = useRef(null)
 
@@ -37,39 +41,62 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
     if (confirmed) onDelete(habit.id)
   }
 
+  const cardClass = [
+    'habit-card',
+    habit.pinned ? 'habit-card-pinned' : '',
+    isHighStreak ? 'habit-card-strong' : '',
+    metWeeklyTarget ? 'habit-card-complete' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div className="habit-card">
-      <h3>{habit.name}</h3>
+    <article className={cardClass}>
+      <div className="habit-card-top">
+        <h3>{habit.name}</h3>
+        {habit.pinned ? <span className="habit-chip">Pinned</span> : null}
+      </div>
       {habit.description ? <p className="habit-description">{habit.description}</p> : null}
-      <p>Streak: {getStreakDays(habit)} days</p>
-      <p>
-        {habit.completedThisWeek} / {habit.targetPerWeek} this week
-      </p>
+
+      <div className="habit-metrics">
+        <div className="habit-metric">
+          <span className="habit-metric-label">Streak</span>
+          <span className="habit-metric-value">
+            {streakDays}
+            <span className="habit-metric-unit">days</span>
+          </span>
+          {isHighStreak ? <span className="habit-metric-note">Strong streak</span> : null}
+        </div>
+        <div className="habit-metric">
+          <span className="habit-metric-label">This week</span>
+          <span className="habit-metric-value">
+            {habit.completedThisWeek}
+            <span className="habit-metric-unit">/ {habit.targetPerWeek}</span>
+          </span>
+        </div>
+      </div>
+
+      <div
+        className="habit-progress"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={habit.targetPerWeek || 0}
+        aria-valuenow={Math.min(habit.completedThisWeek, habit.targetPerWeek || 0)}
+        aria-label={`${habit.name} weekly progress`}
+      >
+        <span className="habit-progress-fill" style={{ width: `${weeklyPercent}%` }} />
+      </div>
+
       {metWeeklyTarget ? (
         <p className="weekly-target-message" role="status">
           Weekly target reached for {habit.name}.
         </p>
       ) : null}
 
-      <div
-        className="habit-controls"
-        style={{
-          display: 'flex',
-          gap: '1rem',
-          justifyContent: 'space-between',
-          marginTop: '1rem'
-        }}
-      >
+      <div className="habit-controls">
         <button
           type="button"
           className={habit.pinned ? 'pin-button pin-button-on habit-btn' : 'pin-button pin-button-off habit-btn'}
-          style={{
-            borderRadius: '8px',
-            background: '#f2f4fa',
-            border: 'none',
-            padding: '0.5rem 1.2rem',
-            cursor: 'pointer'
-          }}
           onClick={() => onTogglePinned(habit.id)}
           aria-pressed={habit.pinned}
         >
@@ -79,14 +106,7 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
           type="button"
           ref={markDoneRef}
           onClick={handleMarkDone}
-          className="habit-btn"
-          style={{
-            borderRadius: '8px',
-            background: '#e6f9ec',
-            border: 'none',
-            padding: '0.5rem 1.2rem',
-            cursor: 'pointer'
-          }}
+          className="habit-btn mark-done-btn"
         >
           Mark Done
         </button>
@@ -95,14 +115,6 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
           onClick={handleResetWeek}
           disabled={habit.completedThisWeek === 0}
           className="habit-btn"
-          style={{
-            borderRadius: '8px',
-            background: '#f4f9fa',
-            border: 'none',
-            padding: '0.5rem 1.2rem',
-            cursor: habit.completedThisWeek === 0 ? 'not-allowed' : 'pointer',
-            opacity: habit.completedThisWeek === 0 ? 0.6 : 1
-          }}
         >
           Reset This Week
         </button>
@@ -110,22 +122,11 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
           type="button"
           onClick={handleDelete}
           className="habit-btn delete-btn"
-          style={{
-            borderRadius: '8px',
-            background: '#ffe6e6',
-            border: 'none',
-            color: '#db2828',
-            padding: '0.5rem 1.2rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            boxShadow: '0 0 0 1.5px #db2828 inset'
-          }}
         >
           Delete
         </button>
       </div>
- 
-    </div>
+    </article>
   )
 }
 
