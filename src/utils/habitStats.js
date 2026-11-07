@@ -41,3 +41,38 @@ export function resetHabitWeek(habits, habitId) {
       : habit
   )
 }
+
+function createId(prefix) {
+  const random = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`
+  return `${prefix}-${random}`
+}
+
+export function createHabit(habits, fields) {
+  return [
+    ...habits,
+    {
+      id: createId('habit'),
+      name: fields.name,
+      description: fields.description,
+      streak: 0,
+      targetPerWeek: fields.targetPerWeek,
+      completedThisWeek: 0,
+      pinned: false,
+      categoryId: fields.categoryId,
+    },
+  ]
+}
+
+export function updateHabit(habits, habitId, fields) {
+  return habits.map((habit) =>
+    habit.id === habitId
+      ? {
+          ...habit,
+          name: fields.name,
+          description: fields.description,
+          targetPerWeek: fields.targetPerWeek,
+          categoryId: fields.categoryId,
+        }
+      : habit
+  )
+}

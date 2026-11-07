@@ -3,7 +3,7 @@ import { getStreakDays } from '../utils/habitStats.js'
 import { playConfettiBurst } from '../utils/confettiBurst.js'
 import './habitConfetti.css'
 
-function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete }) {
+function HabitCard({ habit, category, onMarkDone, onTogglePinned, onResetWeek, onDelete, onEdit }) {
   const streakDays = getStreakDays(habit)
   const isHighStreak = streakDays > 10
   const metWeeklyTarget = habit.completedThisWeek >= habit.targetPerWeek
@@ -53,7 +53,15 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
   return (
     <article className={cardClass}>
       <div className="habit-card-top">
-        <h3>{habit.name}</h3>
+        <div className="habit-card-heading">
+          <h3>{habit.name}</h3>
+          {category ? (
+            <p className="habit-category">
+              <span className="category-dot" style={{ backgroundColor: category.color }} aria-hidden="true" />
+              {category.name}
+            </p>
+          ) : null}
+        </div>
         {habit.pinned ? <span className="habit-chip">Pinned</span> : null}
       </div>
       {habit.description ? <p className="habit-description">{habit.description}</p> : null}
@@ -117,6 +125,13 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
           className="habit-btn"
         >
           Reset This Week
+        </button>
+        <button
+          type="button"
+          onClick={() => onEdit(habit.id)}
+          className="habit-btn"
+        >
+          Edit
         </button>
         <button
           type="button"
