@@ -37,23 +37,31 @@ function HabitList() {
     : habits
 
   return (
-    <div>
+    <div className="habit-dashboard">
       <MonthlySummary habits={habits} />
-      <div className="habit-list-toolbar">
-        <button type="button" onClick={() => setSortAz((prev) => !prev)}>
-          {sortAz ? 'Original order' : 'Sort A–Z'}
-        </button>
-      </div>
-      {visibleHabits.map((habit) => (
-        <HabitCard
-          key={habit.id}
-          habit={habit}
-          onMarkDone={handleMarkDone}
-          onTogglePinned={handleTogglePinned}
-          onResetWeek={handleResetWeek}
-          onDelete={handleDelete}
-        />
-      ))}
+      <section className="habit-section" aria-labelledby="habits-heading">
+        <div className="habit-list-toolbar">
+          <div className="habit-list-heading">
+            <h2 id="habits-heading">Habits</h2>
+            <p>{sortAz ? 'Alphabetical order' : 'Original order'}</p>
+          </div>
+          <button type="button" className="sort-button" onClick={() => setSortAz((prev) => !prev)}>
+            {sortAz ? 'Original order' : 'Sort A–Z'}
+          </button>
+        </div>
+        <div className="habit-grid">
+          {visibleHabits.map((habit) => (
+            <HabitCard
+              key={habit.id}
+              habit={habit}
+              onMarkDone={handleMarkDone}
+              onTogglePinned={handleTogglePinned}
+              onResetWeek={handleResetWeek}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
