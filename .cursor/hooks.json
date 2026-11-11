@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "type": "prompt",
+        "timeout": 15,
+        "prompt": "You are a beforeShellExecution hook. Decide whether this terminal command may run.\n\nBlock the command only when it attempts to run git push. Treat it as a push if git push would execute, including forms such as `git push`, `git push origin main`, `git -C <path> push`, `git -c key=value push`, or a chain, script, or alias whose effect is to push (for example `git commit && git push` or `git push --force`).\n\nAllow every other command. That includes git status, git diff, git commit, git pull, git fetch, and any command that only mentions the words \"git\" or \"push\" without running git push.\n\nReply with JSON only, using beforeShellExecution fields:\n- Block: {\"permission\":\"deny\",\"user_message\":\"Blocked because this command attempts to run git push. Pushing from this project is not allowed.\",\"agent_message\":\"Blocked because this command attempts to run git push. Do not retry the push.\"}\n- Allow: {\"permission\":\"allow\"}\n\nHook input:\n$ARGUMENTS"
+      }
+    ]
+  }
+}

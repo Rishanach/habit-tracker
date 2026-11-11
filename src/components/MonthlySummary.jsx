@@ -17,6 +17,7 @@ function MonthlySummary({ habits }) {
   const topHabit = getTopStreak(habits)
 
   return (
+<<<<<<< Updated upstream
     <section className="monthly-summary" aria-labelledby="monthly-summary-heading">
       <div className="summary-heading">
         <p className="summary-kicker">Overview</p>
@@ -35,6 +36,15 @@ function MonthlySummary({ habits }) {
           </p>
           <p className="summary-stat-detail">{topHabit.name}</p>
         </div>
+=======
+    <section className="monthly-summary">
+      <h2>Monthly summary</h2>
+      <div className="summary-facts">
+        <p>Total completions: {totalCompletions}</p>
+        <p>
+          Highest streak: {topHabit.name} ({getStreakDays(topHabit)} days)
+        </p>
+>>>>>>> Stashed changes
       </div>
     </section>
   )

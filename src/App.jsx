@@ -45,8 +45,12 @@ function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
+<<<<<<< Updated upstream
         <div className="app-header-copy">
           <p className="app-kicker">Daily dashboard</p>
+=======
+        <div className="app-heading">
+>>>>>>> Stashed changes
           <h1>Habit Tracker</h1>
           <p>Your daily habits, streaks, and weekly targets.</p>
         </div>

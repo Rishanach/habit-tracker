@@ -1,0 +1,203 @@
+{
+  "title": "Choose the dashboard look",
+  "question": "Which look should the Habit Tracker dashboard take? The seed-packet direction leads. You can take the blister strip, the familiar habit-app standard, or ask for a fresh set.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Seed Packet",
+      "kicker": "THE ROLL",
+      "lineage": "Commercial seed packets, read as a working screen",
+      "thesis": "Each habit is a named crop, and the week is a sowing row you fill by marking it done.",
+      "palette": ["#F4C400", "#14233A", "#F6F3EA", "#1F8A4C"],
+      "materials": ["coated packet stock", "indigo sowing ink"],
+      "viewport": "A yellow bar holds the name and theme switch. Under it, this week's totals. Three habit rows sit on a light field: the name on the left, a sowing row and Mark Done locked to one rail on the right. Green appears only as the Completed badge when a row is full.",
+      "risk": "If the plant language gets louder than the check-off, it starts to feel like a garden catalog.",
+      "raised": [
+        {
+          "from": "Transit diagram",
+          "raise": "The sowing row is the only progress graphic, drawn in full indigo, not a grey track with a tint."
+        },
+        {
+          "from": "Streaming wall",
+          "raise": "The habit you just marked is the loudest row. The others stay quiet."
+        },
+        {
+          "from": "Orienteering map",
+          "raise": "Green is reserved for the Completed badge and is never used as decoration."
+        },
+        {
+          "from": "Botanical folio",
+          "raise": "Every week row shares one size and one baseline, so 4/7 and 3/5 compare by eye."
+        },
+        {
+          "from": "Catalog sleeve",
+          "raise": "The week rows are the display-scale signal. Names and secondary actions stay smaller."
+        },
+        {
+          "from": "Emission rail",
+          "raise": "Names sit left. The week row and Mark Done share one vertical rail."
+        }
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "Yellow bar", "x": 0, "y": 0, "w": 12, "h": 1, "accent": true},
+          {"label": "Week totals", "x": 0, "y": 1, "w": 12, "h": 1},
+          {"label": "Drink water", "x": 0, "y": 2, "w": 7, "h": 2},
+          {"label": "Sowing row", "x": 7, "y": 2, "w": 5, "h": 2, "accent": true},
+          {"label": "Read 10 pages", "x": 0, "y": 4, "w": 7, "h": 2},
+          {"label": "Sowing row", "x": 7, "y": 4, "w": 5, "h": 2},
+          {"label": "Stretch", "x": 0, "y": 6, "w": 7, "h": 2},
+          {"label": "Sowing row", "x": 7, "y": 6, "w": 5, "h": 2}
+        ]
+      }
+    },
+    {
+      "id": "model-pick",
+      "label": "Blister Strip",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "A weekly blister card you punch as you go",
+      "thesis": "The week is a strip of cells. Mark Done punches the next open cell.",
+      "palette": ["#F4F7F8", "#1C1C1C", "#C5CED6", "#1F8A4C"],
+      "materials": ["foil cell", "chalk-white card"],
+      "viewport": "A green header rail, then the week totals, then three cards. Each card's week is a row of cells: filled, open, or stamped Completed. Mark Done sits on the same rail as the next open cell.",
+      "risk": "This is the familiar row of dots most habit apps already ship.",
+      "comp": ".impeccable/mocks/decision/model-pick.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "Green rail", "x": 0, "y": 0, "w": 12, "h": 1, "accent": true},
+          {"label": "Week totals", "x": 0, "y": 1, "w": 12, "h": 1},
+          {"label": "Habit name", "x": 0, "y": 2, "w": 4, "h": 2},
+          {"label": "Cell strip", "x": 4, "y": 2, "w": 8, "h": 2, "accent": true},
+          {"label": "Habit name", "x": 0, "y": 4, "w": 4, "h": 2},
+          {"label": "Cell strip", "x": 4, "y": 4, "w": 8, "h": 2},
+          {"label": "Habit name", "x": 0, "y": 6, "w": 4, "h": 2},
+          {"label": "Cell strip", "x": 6, "y": 6, "w": 6, "h": 2}
+        ]
+      }
+    },
+    {
+      "id": "challenger-transit",
+      "label": "Transit Diagram",
+      "verdict": "declined",
+      "lineage": "A midnight-blue enamel rail map",
+      "thesis": "Habits would be colored lines, and the week would be stations along a route.",
+      "palette": ["#0B1230", "#FFFFFF", "#E21D2D", "#1E5BFF", "#FFC20E", "#22B14C"],
+      "materials": ["enamel ground", "porcelain station ticks"],
+      "viewport": "A route map of three short lines, with Mark Done as a transfer.",
+      "case": "A rail map is a journey, not a check-off. The home scene does not read as a station.",
+      "kept": "The week row is the only progress graphic, drawn at full strength.",
+      "risk": "The screen becomes a map costume and the check-off gets lost.",
+      "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-midnight-transit-diagram-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-midnight-transit-diagram.webp"
+    },
+    {
+      "id": "challenger-streaming",
+      "label": "Streaming Wall",
+      "verdict": "declined",
+      "lineage": "A catalog of poster rows",
+      "thesis": "Each habit would be a tile that grows when you land on it.",
+      "palette": ["#0B0E13", "#1F2430", "#E6E6E8", "#FFC857"],
+      "materials": ["poster tile", "dimmed row"],
+      "viewport": "Horizontal rows of habit posters, details hidden until focus.",
+      "case": "You have three habits to mark, not a catalog to browse. Hiding the week count makes you hunt.",
+      "kept": "The habit you just marked becomes the loudest row.",
+      "risk": "Progress stays hidden until a tile is focused.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-streaming-title-card-wall-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/pop-culture-shelf-streaming-title-card-wall.webp"
+    },
+    {
+      "id": "challenger-orienteering",
+      "label": "Orienteering Map",
+      "verdict": "declined",
+      "lineage": "A course in purple over forest terrain",
+      "thesis": "Marking a habit would punch the next control on a map.",
+      "palette": ["#FFFFFF", "#5C6B32", "#F2E04A", "#8B5A2B", "#6AA8D6", "#7A3E9D"],
+      "materials": ["contour ground", "course purple"],
+      "viewport": "A terrain map with three purple controls and a legend.",
+      "case": "The weekly count is not a route through terrain, and the sample habits are not a course.",
+      "kept": "Green is reserved for the Completed badge and nothing else.",
+      "risk": "A map legend replaces the list you need to scan.",
+      "hero": "https://impeccable.style/worlds/cards/notation-diagram-systems-orienteering-map-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/notation-diagram-systems-orienteering-map.webp"
+    },
+    {
+      "id": "challenger-folio",
+      "label": "Botanical Folio",
+      "verdict": "declined",
+      "lineage": "Five plates of one plant, seed to husk",
+      "thesis": "A habit would move through life stages on matching plates.",
+      "palette": ["#F6F1E6", "#2E5E3D", "#B21E18", "#1A1A1D"],
+      "materials": ["fiber paper", "engraved line"],
+      "viewport": "Five equal plates for each habit, labeled seed through husk.",
+      "case": "The product has a weekly count, not life stages. The plates would invent a progress model it does not have.",
+      "kept": "Every week row shares one size and one baseline.",
+      "risk": "Cream paper and a serif make it the default garden app.",
+      "hero": "https://impeccable.style/worlds/cards/editorial-sequence-montage-botanical-folio-season-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/editorial-sequence-montage-botanical-folio-season.webp"
+    },
+    {
+      "id": "challenger-sleeve",
+      "label": "Catalog Sleeve",
+      "verdict": "declined",
+      "lineage": "A matte-black factory catalog sleeve",
+      "thesis": "Habit names would become color codes on a black field.",
+      "palette": ["#111111", "#F4F4F4", "#E23B2F", "#F0C400"],
+      "materials": ["matte sleeve", "coded hue blocks"],
+      "viewport": "A black field, a pulse of white lines, and a color strip in place of the habit name.",
+      "case": "Hiding the habit name fails the check-off. A nightclub sleeve is not this person's morning.",
+      "kept": "The week rows are the display-scale signal. Everything else stays small.",
+      "risk": "Black and neon is a costume, and the green badge loses its meaning.",
+      "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve.webp"
+    },
+    {
+      "id": "challenger-emission",
+      "label": "Emission Rail",
+      "verdict": "declined",
+      "lineage": "A charcoal spectrogram on a viewing box",
+      "thesis": "Progress would be hairline marks whose height carries the state.",
+      "palette": ["#1A1C1E", "#D8D4CC", "#7C6BB5", "#C6A15B"],
+      "materials": ["charcoal continuum", "hairline emission"],
+      "viewport": "A dark plate of thin colored lines, one rail, no filled week.",
+      "case": "Hairlines fail a glance at 4 of 7, and a lab instrument is not the home check-off.",
+      "kept": "Names sit left. The week and Mark Done share one vertical rail.",
+      "risk": "State disappears into lines too thin to read.",
+      "hero": "https://impeccable.style/worlds/cards/operate-c-emission-line-rail-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/operate-c-emission-line-rail.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "steer": true,
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "lineage": "The soft habit app most people already know",
+    "thesis": "Rounded cards in a column, a thin progress bar, and a quiet header.",
+    "palette": ["#F7F6F3", "#243028", "#7BA17D"],
+    "materials": ["rounded cards", "sage progress bar"],
+    "viewport": "A plain header, then stacked cards. The week is a thin bar under the name, and Mark Done is a green button.",
+    "risk": "Indistinguishable from every other habit app, on purpose.",
+    "comp": ".impeccable/mocks/decision/canon.webp",
+    "wireframe": {
+      "cols": 12,
+      "rows": 10,
+      "regions": [
+        {"label": "Header", "x": 1, "y": 0, "w": 10, "h": 1},
+        {"label": "Card and bar", "x": 1, "y": 2, "w": 10, "h": 2},
+        {"label": "Card and bar", "x": 1, "y": 4, "w": 10, "h": 2},
+        {"label": "Card and bar", "x": 1, "y": 6, "w": 10, "h": 2}
+      ]
+    }
+  }
+}

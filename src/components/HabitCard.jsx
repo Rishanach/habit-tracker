@@ -1,17 +1,21 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getStreakDays } from '../utils/habitStats.js'
 import { playConfettiBurst } from '../utils/confettiBurst.js'
 import './habitConfetti.css'
 
 function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete }) {
+<<<<<<< Updated upstream
   const streakDays = getStreakDays(habit)
   const isHighStreak = streakDays > 10
+=======
+>>>>>>> Stashed changes
   const metWeeklyTarget = habit.completedThisWeek >= habit.targetPerWeek
   const weeklyPercent = habit.targetPerWeek > 0
     ? Math.min(100, Math.round((habit.completedThisWeek / habit.targetPerWeek) * 100))
     : 0
   const markDoneRef = useRef(null)
   const stopConfettiRef = useRef(null)
+  const [punchedIndex, setPunchedIndex] = useState(null)
 
   useEffect(() => {
     return () => {
@@ -20,6 +24,9 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
   }, [])
 
   function handleMarkDone() {
+    if (habit.completedThisWeek < habit.targetPerWeek) {
+      setPunchedIndex(habit.completedThisWeek)
+    }
     stopConfettiRef.current?.()
     stopConfettiRef.current = playConfettiBurst(markDoneRef.current)
     onMarkDone(habit.id)
@@ -31,7 +38,10 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
     const confirmed = window.confirm(
       `Reset this week's progress for "${habit.name}"? This cannot be undone.`
     )
-    if (confirmed) onResetWeek(habit.id)
+    if (confirmed) {
+      setPunchedIndex(null)
+      onResetWeek(habit.id)
+    }
   }
 
   function handleDelete() {
@@ -41,6 +51,7 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
     if (confirmed) onDelete(habit.id)
   }
 
+<<<<<<< Updated upstream
   const cardClass = [
     'habit-card',
     habit.pinned ? 'habit-card-pinned' : '',
@@ -93,6 +104,60 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
         </p>
       ) : null}
 
+=======
+  const cells = Array.from({ length: habit.targetPerWeek }, (_, index) => {
+    const punched = index < habit.completedThisWeek
+    const justPunched = punched && index === punchedIndex
+    const className = justPunched
+      ? 'cell cell-punched cell-just-punched'
+      : punched
+        ? 'cell cell-punched'
+        : 'cell'
+
+    return <li key={index} className={className} />
+  })
+
+  return (
+    <article className={habit.pinned ? 'habit-card habit-card-pinned' : 'habit-card'}>
+      <div className="habit-card-main">
+        <div>
+          <div className="habit-title-row">
+            <h3>{habit.name}</h3>
+            {metWeeklyTarget ? <p className="completed-badge">Completed</p> : null}
+          </div>
+          {habit.description ? <p className="habit-description">{habit.description}</p> : null}
+          <p className="habit-streak">
+            Streak: {getStreakDays(habit)} days
+          </p>
+        </div>
+
+        <div className="habit-progress">
+          <ol
+            className="blister"
+            aria-label={`${habit.completedThisWeek} of ${habit.targetPerWeek} this week`}
+          >
+            {cells}
+          </ol>
+          <p className="habit-count">
+            {habit.completedThisWeek} / {habit.targetPerWeek} this week
+          </p>
+          <button
+            type="button"
+            ref={markDoneRef}
+            onClick={handleMarkDone}
+            className="mark-done"
+          >
+            Mark Done
+          </button>
+          {metWeeklyTarget ? (
+            <p className="weekly-target-message" role="status">
+              Weekly target reached for {habit.name}.
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+>>>>>>> Stashed changes
       <div className="habit-controls">
         <button
           type="button"
@@ -104,6 +169,7 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
         </button>
         <button
           type="button"
+<<<<<<< Updated upstream
           ref={markDoneRef}
           onClick={handleMarkDone}
           className="habit-btn mark-done-btn"
@@ -112,6 +178,8 @@ function HabitCard({ habit, onMarkDone, onTogglePinned, onResetWeek, onDelete })
         </button>
         <button
           type="button"
+=======
+>>>>>>> Stashed changes
           onClick={handleResetWeek}
           disabled={habit.completedThisWeek === 0}
           className="habit-btn"

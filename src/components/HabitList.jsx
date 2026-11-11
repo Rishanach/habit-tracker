@@ -37,6 +37,7 @@ function HabitList() {
     : habits
 
   return (
+<<<<<<< Updated upstream
     <div className="habit-dashboard">
       <MonthlySummary habits={habits} />
       <section className="habit-section" aria-labelledby="habits-heading">
@@ -62,6 +63,27 @@ function HabitList() {
           ))}
         </div>
       </section>
+=======
+    <div className="habit-board">
+      <MonthlySummary habits={habits} />
+      <div className="habit-list-toolbar">
+        <button type="button" onClick={() => setSortAz((prev) => !prev)}>
+          {sortAz ? 'Original order' : 'Sort A–Z'}
+        </button>
+      </div>
+      <div className="habit-list">
+      {visibleHabits.map((habit) => (
+        <HabitCard
+          key={habit.id}
+          habit={habit}
+          onMarkDone={handleMarkDone}
+          onTogglePinned={handleTogglePinned}
+          onResetWeek={handleResetWeek}
+          onDelete={handleDelete}
+        />
+      ))}
+      </div>
+>>>>>>> Stashed changes
     </div>
   )
 }
